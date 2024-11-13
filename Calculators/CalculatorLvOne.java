@@ -1,3 +1,5 @@
+package Calculators;
+
 import java.util.Scanner;
 
 
@@ -6,7 +8,7 @@ import java.util.Scanner;
 // 잘못된 값이 입력되면 그 즉시 프로그램이 터지도록 기획
 
 
-public class App {
+public class CalculatorLvOne {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
