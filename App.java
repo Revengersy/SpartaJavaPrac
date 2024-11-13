@@ -6,15 +6,12 @@ import java.util.Scanner;
 // num1과 num2는 int가 아니면 그냥 프로그램이 터지도록 처리.
 
 
-public class App
-{
+public class App {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        while(true)
-        {
+        while (true) {
             System.out.println("--------------------");
             System.out.println("새로운 연산을 시작합니다");
 
@@ -29,8 +26,7 @@ public class App
             String tmp2 = sc.nextLine();
             int num2 = Integer.parseUnsignedInt(tmp2);
 
-            switch (op)
-            {
+            switch (op) {
                 case "+":
                     System.out.println(num1 + num2);
                     break;
@@ -54,8 +50,7 @@ public class App
 
             System.out.println("연산 종료 실행? (exit를 입력하면 종료. 그 외의 경우 반복)");
             String exit = sc.nextLine();
-            if(exit.equals("exit"))
-            {
+            if (exit.equals("exit")) {
                 System.out.println("종료합니다.");
                 break;
             }
