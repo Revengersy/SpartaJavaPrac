@@ -47,5 +47,9 @@ public class CalculatorLvTwo {
         results.addLast(num);
     }
 
+    public void deleteFirstResult() {
+        results.removeFirst();
+    }
+
 
 }
