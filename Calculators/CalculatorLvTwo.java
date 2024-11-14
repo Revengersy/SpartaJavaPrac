@@ -10,6 +10,7 @@ public class CalculatorLvTwo {
     }
 
     public void calculate(double num1, double num2, String operator) {
+        double result;
         switch (operator) {
             case "+":
                 results.add(num1 + num2);
@@ -37,19 +38,14 @@ public class CalculatorLvTwo {
         return results;
     }
 
-    private double addTwoNumbers(double num1, double num2) {
-        return num1 + num2;
+    public Double getCurrentResult() {
+        return results.getLast();
     }
 
-    private double subtractTwoNumbers(double num1, double num2) {
-        return num1 - num2;
+    public void setCurrentResult(double num) {
+        results.removeLast();
+        results.addLast(num);
     }
 
-    private double multiplyTwoNumbers(double num1, double num2) {
-        return num1 * num2;
-    }
 
-    private double divideTwoNumbers(double num1, double num2) {
-        return num1 / num2;
-    }
 }
