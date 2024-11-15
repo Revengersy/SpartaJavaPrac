@@ -1,28 +1,32 @@
-package Calculators;
+package Calculators.level.two;
 
 import java.util.ArrayDeque;
 import java.util.NoSuchElementException;
 
-public class CalculatorLvThree<T extends Number> {
-    private static ArrayDeque<Double> results = new ArrayDeque<>();
+public class CalculatorLvTwo {
+    private static ArrayDeque<Double> results;
 
-    public void calculate(T num1, T num2, CalculationType operator) {
+    public CalculatorLvTwo() {
+        results = new ArrayDeque<>();
+    }
+
+    public void calculate(double num1, double num2, String operator) {
         switch (operator) {
-            case PLUS:
-                results.add(num1.doubleValue() + num2.doubleValue());
+            case "+":
+                results.add(num1 + num2);
                 break;
-            case MINUS:
-                results.add(num1.doubleValue() - num2.doubleValue());
+            case "-":
+                results.add(num1 - num2);
                 break;
-            case MULTIPLY:
-                results.add(num1.doubleValue() * num2.doubleValue());
+            case "*":
+                results.add(num1 * num2);
                 break;
-            case DIVIDE:
-                if (num2.doubleValue() == 0.0) {
+            case "/":
+                if (num2 == 0) {
                     System.out.println("0으로 나눌 수 없습니다.");
                     break;
                 }
-                results.add(num1.doubleValue() / num2.doubleValue());
+                results.add(num1 / num2);
                 break;
             default:
                 System.out.println("유효하지 않은 연산자입니다.");
@@ -30,11 +34,12 @@ public class CalculatorLvThree<T extends Number> {
         }
     }
 
-    public static ArrayDeque<Double> getResults() {
+    public ArrayDeque<Double> getResults() {
         return results;
     }
 
-    public static Double getCurrentResult() {
+
+    public Double getCurrentResult() {
         try {
             return results.getLast();
         } catch (NoSuchElementException e) {
@@ -44,7 +49,7 @@ public class CalculatorLvThree<T extends Number> {
         }
     }
 
-    public static void setCurrentResult(double num) {
+    public void setCurrentResult(double num) {
         try {
             results.removeLast();
             results.addLast(num);
@@ -54,7 +59,7 @@ public class CalculatorLvThree<T extends Number> {
         }
     }
 
-    public static void deleteFirstResult() {
+    public void deleteFirstResult() {
         try {
             results.removeFirst();
         } catch (NoSuchElementException e) {
@@ -62,10 +67,5 @@ public class CalculatorLvThree<T extends Number> {
             System.out.println("저장된 연산 결과가 없습니다.");
         }
     }
-
-    public static void printResultsGreaterThan(double num) {
-        results.stream()
-                .filter(result -> result > num)
-                .forEach(System.out::println);
-    }
 }
+

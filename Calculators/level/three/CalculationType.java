@@ -1,4 +1,4 @@
-package Calculators;
+package Calculators.level.three;
 
 public enum CalculationType {
     PLUS,
