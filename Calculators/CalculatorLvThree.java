@@ -4,11 +4,7 @@ import java.util.ArrayDeque;
 import java.util.NoSuchElementException;
 
 public class CalculatorLvThree<T extends Number> {
-    private static ArrayDeque<Double> results;
-
-    public CalculatorLvThree() {
-        results = new ArrayDeque<>();
-    }
+    private static ArrayDeque<Double> results = new ArrayDeque<>();
 
     public void calculate(T num1, T num2, CalculationType operator) {
         switch (operator) {
