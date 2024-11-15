@@ -1,6 +1,7 @@
 package Calculators;
 
 import java.util.ArrayDeque;
+import java.util.NoSuchElementException;
 
 public class CalculatorLvTwo {
     private static ArrayDeque<Double> results;
@@ -37,18 +38,34 @@ public class CalculatorLvTwo {
         return results;
     }
 
+
     public Double getCurrentResult() {
-        return results.getLast();
+        try {
+            return results.getLast();
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+            System.out.println("연산 결과를 수행한 적이 없습니다.");
+            return null;
+        }
     }
 
     public void setCurrentResult(double num) {
-        results.removeLast();
-        results.addLast(num);
+        try {
+            results.removeLast();
+            results.addLast(num);
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+            System.out.println("저장된 연산 결과가 없습니다");
+        }
     }
 
     public void deleteFirstResult() {
-        results.removeFirst();
+        try {
+            results.removeFirst();
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+            System.out.println("저장된 연산 결과가 없습니다.");
+        }
     }
-
-
 }
+
