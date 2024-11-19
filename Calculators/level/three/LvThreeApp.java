@@ -4,16 +4,21 @@ import java.util.Scanner;
 
 public class LvThreeApp {
 
+    public static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         CalculatorLvThree<Integer> intCalculator = new CalculatorLvThree<>();
         CalculatorLvThree<Double> doubleCalculator = new CalculatorLvThree<>();
 
         while (true) {
             System.out.println("---------------------------------------");
 
-            int int1 = getPositiveNumber(sc, "(양의 정수입력) 첫 번째 숫자를 입력하세요: ");
-            int int2 = getPositiveNumber(sc, "(양의 정수입력) 두 번째 숫자를 입력하세요: ");
+            System.out.println( "(양의 정수입력) 첫 번째 숫자를 입력하세요: ");
+            int int1 = Integer.parseInt(getValidInputWithRegex("[0-9]+"));
+            System.out.println("(양의 정수입력) 두 번째 숫자를 입력하세요: ");
+            int int2 = Integer.parseInt(getValidInputWithRegex("[0-9]+"));
+            sc.nextLine();
+
             CalculationType operator = getProperOperator(sc);
 
             intCalculator.calculate(int1, int2, operator);
@@ -24,8 +29,12 @@ public class LvThreeApp {
             System.out.println("---");
             System.out.println();
 
-            double double1 = getDoubleNumber(sc, "(실수입력) 첫 번째 숫자를 입력하세요: ");
-            double double2 = getDoubleNumber(sc, "(실수입력) 두 번재 숫자를 입력하세요: ");
+            System.out.println();
+            System.out.println( "(실수 입력) 첫 번째 숫자를 입력하세요: ");
+            double double1 = Double.parseDouble(getValidInputWithRegex("[-+]?[0-9]*\\.?[0-9]+"));
+            System.out.println( "(실수 입력) 두 번째 숫자를 입력하세요: ");
+            double double2 = Double.parseDouble(getValidInputWithRegex("[-+]?[0-9]*\\.?[0-9]+"));
+            sc.nextLine();
 
             CalculationType operator2 = getProperOperator(sc);
 
@@ -53,29 +62,14 @@ public class LvThreeApp {
         sc.close();
     }
 
-    public static int getPositiveNumber(Scanner sc, String message) {
-        while (true) {
-            try {
-                System.out.println(message);
-                return Integer.parseUnsignedInt(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.err.println(e.getMessage());
-                System.out.println("양의 정수 값을 입력해 주세요.");
-            }
+    public static String getValidInputWithRegex(String regex) {
+        while (!sc.hasNext(regex)) {
+            System.out.println("잘못된 입력입니다. 다시 조건에 맞게 입력해주세요.");
+            sc.next();
         }
+        return sc.next();
     }
 
-    public static double getDoubleNumber(Scanner sc, String message) {
-        while (true) {
-            try {
-                System.out.println(message);
-                return Double.parseDouble(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.err.println(e.getMessage());
-                System.out.println("실수 값을 입력해 주세요.");
-            }
-        }
-    }
 
     public static CalculationType getProperOperator(Scanner sc) {
         while (true) {
