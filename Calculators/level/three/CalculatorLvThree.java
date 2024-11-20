@@ -35,32 +35,24 @@ public class CalculatorLvThree<T extends Number> {
     }
 
     public static Double getCurrentResult() {
-        try {
-            return results.getLast();
-        } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
-            System.out.println("연산 결과를 수행한 적이 없습니다.");
-            return null;
-        }
+        return results.getLast();
     }
 
     public static void setCurrentResult(double num) {
-        try {
-            results.removeLast();
+        if (results.isEmpty()) {
             results.addLast(num);
-        } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
-            System.out.println("저장된 연산 결과가 없습니다");
+            return;
         }
+        results.removeLast();
+        results.addLast(num);
     }
 
     public static void deleteFirstResult() {
-        try {
+        if (results.isEmpty()) {
             results.removeFirst();
-        } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
-            System.out.println("저장된 연산 결과가 없습니다.");
+            return;
         }
+        results.removeFirst();
     }
 
     public static void printResultsGreaterThan(double num) {
