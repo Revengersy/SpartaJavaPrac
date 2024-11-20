@@ -1,4 +1,4 @@
-package CalculatorForWeek3;
+package WebLectureAssignment.Week3;
 
 public class AddOperation extends AbstractOperation {
     @Override

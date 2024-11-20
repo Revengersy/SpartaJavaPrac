@@ -1,6 +1,4 @@
-package CalculatorForWeek3;
-
-import java.util.Scanner;
+package WebLectureAssignment.Week3;
 
 public class CalculatorForWeek3 {
     AbstractOperation operation;

@@ -1,4 +1,4 @@
-package CalculatorForWeek3;
+package WebLectureAssignment.Week3;
 
 public class MainWeek3 {
     public static void main(String[] args) {

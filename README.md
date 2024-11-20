@@ -4,7 +4,7 @@
 
 ## 📦 핵심 패키지
 
-### 1. CalculatorForWeek3
+### 1. WebLectureAssignment.Week3.Week3
 - 🖥️ 온라인 강의 과제로 제출한 계산기 프로그램입니다.
 
 ### 2. Calculators/level
