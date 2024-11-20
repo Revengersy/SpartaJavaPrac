@@ -35,6 +35,10 @@ public class CalculatorLvThree<T extends Number> {
     }
 
     public static Double getCurrentResult() {
+        if (results.isEmpty()) {
+            System.out.println("최근 결과가 없습니다. (null 처리)");
+            return null;
+        }
         return results.getLast();
     }
 
