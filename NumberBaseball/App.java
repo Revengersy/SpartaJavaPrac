@@ -1,5 +1,9 @@
 package NumberBaseball;
 
+import NumberBaseball.baseball.RoundAssigner;
+import NumberBaseball.baseball.RoundResult;
+import NumberBaseball.baseball.RoundResults;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,52 +15,50 @@ public class App {
 
 
     public static void main(String[] args) {
-        final int BASEBALL_ROUND = 3;
+        RoundAssigner roundAssigner = RoundAssigner.getInstance(3);
+        final int BASEBALL_ROUND = roundAssigner.getRoundNumber();
 
-        HashMap<Integer[], Integer[]> hashMap = new HashMap();
-        ArrayList<Integer[]> history = new ArrayList<>();
-
-
-        int[] answers = {5, 4, 3};
+        int[] answers = {3, 1, 9};
 //        숫자는 셋 다 달라야 함
 
+        Integer round = 0;
         while (true) {
-            int[] trials = {0, 0, 0};
+            int[] trials = new int[BASEBALL_ROUND];
+            HashMap<String, Integer> baseballPitchingMap = new HashMap<>();
+            baseballPitchingMap.put("Strike", 0);
+            baseballPitchingMap.put("Ball", 0);
+            baseballPitchingMap.put("Out", 0);
+            int[] results = new int[3];
 
             for (int i = 0; i < BASEBALL_ROUND; i++) {
                 trials[i] = Integer.parseInt(getValidInputWithRegex("[0-9]"));
             }
             System.out.println("입력 종료 ");
 
-//        숫자는 셋 다 달라야 함
-            Integer[] results = {0, 0, 0};
-//        첫번째는 S, 두 번째는 B
             for (int i = 0; i < BASEBALL_ROUND; i++) {
                 if (answers[i] == trials[i]) {
-                    results[0]++;
+                    baseballPitchingMap.put("Strike", baseballPitchingMap.get("Strike") + 1);
                 }
                 for (int j = 0; j < BASEBALL_ROUND; j++) {
                     if (answers[i] == trials[j] && i != j) {
-                        results[1]++;
+                        baseballPitchingMap.put("Ball", baseballPitchingMap.get("Ball") + 1);
                     }
                 }
             }
-            results[2] = 3 - (results[0] + results[1]);
+            baseballPitchingMap.put("Out", BASEBALL_ROUND - (baseballPitchingMap.get("Strike") + baseballPitchingMap.get("Ball")));
 
             System.out.printf("%s 결과: %d %n", "Strike", results[0]);
             System.out.printf("%s 결과: %d %n", "Ball", results[1]);
             System.out.printf("%s 결과: %d %n", "Out", results[2]);
 
-            history.add(results);
+            RoundResults.addResult(new RoundResult(trials, results, roundAssigner));
+            System.out.println("저장됨");
+
 
             System.out.println("지금까지의 결과");
-            for (int i = 0; i < history.size(); i++) {
-                System.out.println("라운드 "+ i);
-                for (int j = 0; j < BASEBALL_ROUND; j++) {
-                    System.out.println(history.get(i)[j]);
-                }
-            }
+            RoundResults.printResults();
         }
+
 
 //        AI: 3자리 정답 저장
 //        플레이어: 정답 입력(3자리 숫자)
